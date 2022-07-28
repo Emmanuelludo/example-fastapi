@@ -20,7 +20,7 @@ origins = [
     "http://localhost",
     "http://localhost:8000",
     "https://www.google.com",
-    # "*"
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
