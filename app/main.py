@@ -1,11 +1,9 @@
+from os import stat
 from fastapi import FastAPI
 
-from app.routers.votes import vote
 
-from . import models
-from .database import engine
 from .routers import posts, users, auth, votes
-from .config import Settings
+
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -37,6 +35,6 @@ app.include_router(auth.router)
 app.include_router(votes.router)
 
 
-@app.get("/")
+@app.get("/", status_code=200)
 async def root():
     return {"message": "My api of course"}

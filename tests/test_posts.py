@@ -1,9 +1,5 @@
-from turtle import pos
 import pytest
-from typing import List
 from app import schemas
-
-from app import models
 
 
 def test_get_all_posts(authorized_client, test_posts):

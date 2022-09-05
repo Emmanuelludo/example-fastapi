@@ -13,8 +13,7 @@ def test_root(client):  # client
 
 
 def test_create_user(client):  # client
-    email = "test_" + random.choice(string.ascii_letters) + \
-        str(random.randint(1, 1000000)) + '@mail.com'
+    email = f"test_{random.choice(string.ascii_letters)}{str(random.randint(1, 1000000))}@mail.com"
     resp = client.post(
         '/users/', json={"email": email, "password": "wordpass"})
     new_user = schemas.UserResponse(**resp.json())
@@ -35,8 +34,7 @@ def test_login_user(client, test_user):  # client
 
 
 def test_incorrect_user(client, test_user):
-    email = "test_" + random.choice(string.ascii_letters) + \
-        str(random.randint(1, 1000000)) + '@mail.com'
+    email = f"test_{random.choice(string.ascii_letters)}{str(random.randint(1, 1000000))}@mail.com"
     resp = client.post(
         '/login', data={"username": email, "password": test_user['password']})
 
@@ -45,8 +43,7 @@ def test_incorrect_user(client, test_user):
 
 
 def test_incorrect_password(client, test_user):
-    password = random.choice(string.ascii_letters)*3 + "pass" + random.choice(string.ascii_letters) + \
-        str(random.randint(1, 1000))
+    password = f"{random.choice(string.ascii_letters)*3}pass{random.choice(string.ascii_letters)}{str(random.randint(1, 1000))}"
     resp = client.post(
         '/login', data={"username": test_user['email'], "password": password})
 
